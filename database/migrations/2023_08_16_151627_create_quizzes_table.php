@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('quizzes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->string('body', 1000);
+            $table->string('body', 500);
             $table->string('answer', 100);
-            $table->string('annotation', 1000);
-            $table->unsignedBigInteger('correct_num');
-            $table->unsignedBigInteger('question_num');
+            $table->string('annotation', 500)->nullable();
+            $table->unsignedBigInteger('correct_num')->default(0);
+            $table->unsignedBigInteger('question_num')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
