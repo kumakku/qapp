@@ -41,4 +41,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    //Quizに対するリレーション
+    public function quizzes()
+    {
+        return $this->hasMany(Quiz::class);
+    }
 }
