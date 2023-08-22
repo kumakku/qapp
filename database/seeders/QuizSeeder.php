@@ -59,5 +59,47 @@ class QuizSeeder extends Seeder
             'created_at' => new DateTime(),
 			'updated_at' => new DateTime(),
             ]);
+        DB::table('quizzes')->insert([
+            'user_id' => 1,
+            'body' => 'お供のドラキュラ、オオカミ男、フランケンとともに人間界へやってきた主人公を描く、藤子不二雄Ⓐの漫画は何でしょう？',
+            'answer' => '『怪物くん』',
+            'created_at' => new DateTime(),
+			'updated_at' => new DateTime(),
+            ]);
+        DB::table('quizzes')->insert([
+            'user_id' => 1,
+            'body' => 'プログラミングにおいて、複数の条件分岐やループを入れ子にした構造のことを何というでしょう？',
+            'answer' => 'ネスト',
+            'created_at' => new DateTime(),
+			'updated_at' => new DateTime(),
+            ]);
+        DB::table('quizzes')->insert([
+            'user_id' => 1,
+            'body' => 'ロダン以降の時代には完成した芸術作品として製作されるようになった、頭と手足がない胴体だけの彫刻作品を何というでしょう？',
+            'answer' => 'トルソー',
+            'created_at' => new DateTime(),
+			'updated_at' => new DateTime(),
+            ]);
+        DB::table('quizzes')->insert([
+            'user_id' => 1,
+            'body' => '「もう飛ぶまいぞ、この蝶々」などのアリアが歌われる、主人公の召使と恋人スザンナの結婚式を描くモーツァルトのオペラは何でしょう？',
+            'answer' => '『フィガロの結婚』',
+            'created_at' => new DateTime(),
+			'updated_at' => new DateTime(),
+            ]);
+        DB::table('quizzes')->insert([
+            'user_id' => 1,
+            'body' => 'カトリックの信者が死後に聖人として公式に認定されることを、漢字二文字で何というでしょう？',
+            'answer' => '列聖',
+            'created_at' => new DateTime(),
+			'updated_at' => new DateTime(),
+            ]);
+        DB::table('quizzes')->insert([
+            'user_id' => 1,
+            'body' => '「三日月に腰かけて釣りをする少年」のロゴで知られる、『シュレック』や『カンフー・パンダ』を手がけた映画会社は何でしょう？',
+            'answer' => 'ドリームワークス',
+            'created_at' => new DateTime(),
+			'updated_at' => new DateTime(),
+            ]);
     }
 }
