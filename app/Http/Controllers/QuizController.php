@@ -16,6 +16,7 @@ class QuizController extends Controller
     public function index(Quiz $quiz)
     {
         //return view('quizzes.index')->with(['quizzes' => $quiz->getPaginateByLimit()]);
-        return view('quizzes.index')->with(['quizzes' => $quiz->get()]);
+        $user_id = auth()->id();
+        return view('quizzes.index')->with(['quizzes' => $quiz->where('user_id', $user_id)->get()]);
     }
 }

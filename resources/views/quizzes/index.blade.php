@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+    <x-app-layout>
     <head>
         <meta charset="UTF-8"> <!-文字化け防止->
 	    <title>Quiz Database</title>
@@ -24,4 +25,5 @@
         </table>
         {{--{{ $quizzes->links() }}--}}
     </body>
+    </x-app-layout>
 </html>
