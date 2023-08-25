@@ -101,5 +101,26 @@ class QuizSeeder extends Seeder
             'created_at' => new DateTime(),
 			'updated_at' => new DateTime(),
             ]);
+        DB::table('quizzes')->insert([
+            'user_id' => 2,
+            'body' => '石清水八幡宮で行われたくじ引きの結果将軍となり「万人恐怖」と恐れられる政治を行った、室町幕府の第6代将軍は誰でしょう？',
+            'answer' => '足利義教',
+            'created_at' => new DateTime(),
+			'updated_at' => new DateTime(),
+            ]);
+        DB::table('quizzes')->insert([
+            'user_id' => 2,
+            'body' => 'メキシコにウシュマルやパレンケといった遺跡が残る、独自の象形文字や暦が発達した、中央アメリカの文明は何でしょう？',
+            'answer' => 'マヤ文明',
+            'created_at' => new DateTime(),
+			'updated_at' => new DateTime(),
+            ]);
+        DB::table('quizzes')->insert([
+            'user_id' => 2,
+            'body' => '若水を用いたお茶が振る舞われる、年が明けて最初に行われる茶会のことを何というでしょう？',
+            'answer' => '初釜',
+            'created_at' => new DateTime(),
+			'updated_at' => new DateTime(),
+            ]);
     }
 }
