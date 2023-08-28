@@ -31,4 +31,10 @@ class Quiz extends Model
     {
         return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
+    
+    protected $fillable = [
+        'body',
+        'answer',
+        'annotation',
+        ];
 }

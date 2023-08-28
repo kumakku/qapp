@@ -166,6 +166,17 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'quiz.body' => [
+            'required' => ':attributeは入力必須です',
+            'max' => ':attributeは:max文字以下で入力してください'
+            ],
+        'quiz.answer' => [
+            'required' => ':attributeは入力必須です',
+            'max' => ':attributeは:max文字以下で入力してください'
+            ],
+        'quiz.annotation' => [
+            'max' => ':attributeは:max文字以下で入力してください'
+            ],
     ],
 
     /*
@@ -179,6 +190,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'quiz.body' => '問題文',
+        'quiz.answer' => '答え',
+        'quiz.annotation' => '注釈'
+        ],
 
 ];

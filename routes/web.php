@@ -20,8 +20,11 @@ Route::get('/', function () {
 });
 
 Route::controller(QuizController::class)->middleware(['auth'])->group(function(){
-    Route::get('/', [QuizController::class, 'portal'])->name('portal');
-    Route::get('/qdb', [QuizController::class, 'index'])->name('index');
+    // Route::get('/', [QuizController::class, 'portal'])->name('portal');
+    Route::get('/', 'index')->name('index');
+    Route::post('/quizzes', 'store')->name('store');
+    Route::get('/quizzes/create', 'create')->name('create');
+    Route::get('/quizzes/{quiz}', 'show')->name('show');
 });
 
 Route::get('/dashboard', function () {

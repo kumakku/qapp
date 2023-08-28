@@ -7,7 +7,6 @@
 　　</head>
     <body>
         <input type="text" id="searchInput" placeholder="検索">
-        <button type=“button” onclick="location.href='/create'">クイズ作成</button>
         <table border="1" id="qtable">
             <tr>
                 <th>問題</th>
@@ -17,7 +16,7 @@
             </tr>
             @foreach ($quizzes as $quiz)
             <tr>
-                <td>{{ $quiz->body }}</td>
+                <td><a href="/quizzes/{{ $quiz->id }}">{{ $quiz->body }}</a></td>
                 <td>{{ $quiz->answer }}</td>
                 <td>{{ $quiz->annotation }}</td>
             </tr>
