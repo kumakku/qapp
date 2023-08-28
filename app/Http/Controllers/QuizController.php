@@ -9,16 +9,11 @@ use App\Models\Quiz;
 class QuizController extends Controller
 {
     //
-    public function portal()
-    {
-        return view('quizzes.portal');
-    }
-    
     public function index(Quiz $quiz)
     {
         //return view('quizzes.index')->with(['quizzes' => $quiz->getPaginateByLimit()]);
         $user_id = auth()->id();
-        return view('quizzes.index')->with(['quizzes' => $quiz->where('user_id', $user_id)->get()]);
+        return view('quizzes.index')->with(['quizzes' => $quiz->getOnlyLoginUser()]);
     }
     
     public function show(Quiz $quiz)
@@ -37,5 +32,17 @@ class QuizController extends Controller
         $quiz->user_id = auth()->id();
         $quiz->fill($input)->save();
         return redirect('/quizzes/'.$quiz->id);
+    }
+    
+    public function edit(Quiz $quiz)
+    {
+        return view('quizzes.edit')->with(['quiz' => $quiz]);
+    }
+    
+    public function update(QuizRequest $request, Quiz $quiz)
+    {
+        $input = $request['quiz'];
+        $quiz->fill($input)->save();
+        return redirect('quizzes/'.$quiz->id);
     }
 }

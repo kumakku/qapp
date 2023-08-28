@@ -25,6 +25,8 @@ Route::controller(QuizController::class)->middleware(['auth'])->group(function()
     Route::post('/quizzes', 'store')->name('store');
     Route::get('/quizzes/create', 'create')->name('create');
     Route::get('/quizzes/{quiz}', 'show')->name('show');
+    Route::put('/quizzes/{quiz}', 'update')->name('update');
+    Route::get('/quizzes/{quiz}/edit', 'edit')->name('edit');
 });
 
 Route::get('/dashboard', function () {

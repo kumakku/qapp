@@ -32,6 +32,12 @@ class Quiz extends Model
         return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
     
+    public function getOnlyLoginUser()
+    {
+        $user_id = auth()->id();
+        return $this->where('user_id', $user_id)->orderBy('updated_at', 'DESC')->get();
+    }
+    
     protected $fillable = [
         'body',
         'answer',
