@@ -15,6 +15,20 @@
         <h2>画像</h2>
         <h2>タグ</h2>
         <button type="button" onclick="location.href='/quizzes/{{ $quiz->id }}/edit'">編集</button>
+        <form action="/quizzes/{{ $quiz->id }}" method="POST" id="form_{{ $quiz->id }}">
+            @csrf
+            @method('DELETE')
+            <button type="button" onclick="deleteQuiz({{ $quiz->id }})">削除</button>
+        </form>
+        <script>
+    		function deleteQuiz(id){
+    			'use strict'
+    			var res = window.confirm('削除すると復元できません。\n本当に削除しますか？')
+    			if (res){
+    				document.getElementById(`form_${id}`).submit();
+    			}
+    		}
+    	</script>
     </body>
     </x-app-layout>
 </html>

@@ -45,4 +45,10 @@ class QuizController extends Controller
         $quiz->fill($input)->save();
         return redirect('quizzes/'.$quiz->id);
     }
+    
+    public function delete(Quiz $quiz)
+    {
+        $quiz->delete();
+        return redirect('/');
+    }
 }

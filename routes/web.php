@@ -26,6 +26,7 @@ Route::controller(QuizController::class)->middleware(['auth'])->group(function()
     Route::get('/quizzes/create', 'create')->name('create');
     Route::get('/quizzes/{quiz}', 'show')->name('show');
     Route::put('/quizzes/{quiz}', 'update')->name('update');
+    Route::delete('quizzes/{quiz}', 'delete')->name('delete');
     Route::get('/quizzes/{quiz}/edit', 'edit')->name('edit');
 });
 
