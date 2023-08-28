@@ -14,6 +14,7 @@
         <p>{{ $quiz->annotation }}</p>
         <h2>画像</h2>
         <h2>タグ</h2>
+        <button type="button" onclick="location.href='/quizzes/{{ $quiz->id }}/edit'">編集</button>
     </body>
     </x-app-layout>
 </html>
