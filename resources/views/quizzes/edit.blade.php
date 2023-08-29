@@ -31,7 +31,11 @@
             <h2>注釈</h2>
             <textarea name="quiz[annotation]" rows="5" cols="50" placeholder="注釈やメモしたいことがあれば入力">{{ $annotation }}</textarea>
             <p style="color:red">{{ $errors->first('quiz.annotation') }}</p>
-            <h2>画像</h2>
+            <h2>画像の追加/削除</h2>
+            @foreach ($images as $image)
+                <img src="{{ $image->path }}" alt="画像が読み込めません">
+            @endforeach
+            <input type="file" name="image_data[]" multiple>
             <h2>タグ</h2>
             <input type="submit" value="保存">
         </form>

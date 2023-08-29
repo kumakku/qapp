@@ -45,4 +45,13 @@ class Quiz extends Model
         'answer',
         'annotation',
         ];
+        
+    //あるクイズが削除された際に、それに付随する画像全てを物理削除する
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($quiz){
+            $quiz->images()->delete();
+        });
+    }
 }

@@ -6,7 +6,7 @@
 	    <title>Create</title>
 　　</head>
     <body>
-        <form action="/quizzes" method="POST">
+        <form action="/quizzes" method="POST" enctype="multipart/form-data">
             @csrf
             <h2>問題</h2>
             <input type="text" name="quiz[body]" placeholder="問題文を入力" value={{ old('quiz.body') }}>
@@ -18,6 +18,7 @@
             <textarea name="quiz[annotation]" rows="5" cols="50" placeholder="注釈やメモしたいことがあれば入力">{{ old('quiz.annotation') }}</textarea>
             <p style="color:red">{{ $errors->first('quiz.annotation') }}</p>
             <h2>画像</h2>
+            <input type="file" name="image_data[]" multiple>
             <h2>タグ</h2>
             <input type="submit" value="保存">
         </form>

@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->foreignId('quiz_id')->constrained();
-            $table->string('image_path', 500);
+            $table->string('path', 500);
+            $table->string('caption', 50)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
