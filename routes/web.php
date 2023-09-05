@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\HayaoshiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,14 @@ Route::controller(QuizController::class)->middleware(['auth'])->group(function()
     Route::put('/quizzes/{quiz}', 'update')->name('update');
     Route::delete('quizzes/{quiz}', 'delete')->name('delete');
     Route::get('/quizzes/{quiz}/edit', 'edit')->name('edit');
+});
+
+Route::controller(HayaoshiController::class)->middleware(['auth'])->group(function(){
+    Route::get('/hayaoshi', 'hayaoshi_portal')->name('hayaoshi_portal');
+    Route::post('hayaoshi/select', 'hayaoshi_select')->name('hayaoshi_select');
+    Route::get('/hayaoshi/{quiz}', 'hayaoshi')->name('hayaoshi');
+    Route::post('/hayaoshi/{quiz}/correct', 'correct')->name('correct');
+    Route::post('/hayaoshi/{quiz}/wrong', 'wrong')->name('wrong');
 });
 
 Route::get('/dashboard', function () {

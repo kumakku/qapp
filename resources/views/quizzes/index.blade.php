@@ -7,6 +7,7 @@
 　　</head>
     <body>
         <input type="text" id="searchInput" placeholder="検索">
+        <p>問題数：{{ $quizzes->count() }}</p>
         <table border="1" id="qtable">
             <tr>
                 <th>問題</th>

@@ -40,6 +40,16 @@ class Quiz extends Model
         return $this->where('user_id', $user_id)->orderBy('updated_at', 'DESC')->get();
     }
     
+    public function getQuizRandomly()
+    {
+        $user_id = auth()->id();
+        return $this->where([
+            ['user_id', $user_id],
+            ['question_flag', 0],
+            ])->inRandomOrder()
+            ->first();
+    }
+    
     protected $fillable = [
         'body',
         'answer',
