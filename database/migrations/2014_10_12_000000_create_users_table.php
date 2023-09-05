@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->unsignedBigInteger('interval')->default(150); //クイズ問題文の表示速度。何msごとに一文字表示するか。
+            $table->unsignedBigInteger('count_down_time')->default(3); //早押しボタンを押した後のカウントダウンの秒数。単位はs
             $table->rememberToken();
             $table->timestamps();
         });

@@ -8,6 +8,7 @@ use App\Models\Quiz;
 use App\Models\Image;
 use Cloudinary;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
 {
@@ -21,6 +22,7 @@ class QuizController extends Controller
     
     public function show(Quiz $quiz)
     {
+        //別のユーザーのクイズにはアクセスできないようにする
         if ($quiz->user_id == auth()->id()){
             return view('quizzes.show')->with(['quiz' => $quiz, 'images' => $quiz->images()->get() ]);
         }else{
@@ -71,7 +73,7 @@ class QuizController extends Controller
     public function update(QuizRequest $request, Quiz $quiz)
     {
         $input = $request['quiz'];
-        $quiz->user_id = auth()->id();
+        // $quiz->user_id = auth()->id();
         $quiz->fill($input)->save();
         return redirect('quizzes/'.$quiz->id);
     }

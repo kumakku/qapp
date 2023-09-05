@@ -12,6 +12,9 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('hayaoshi_portal')" :active="request()->routeIs('hayaoshi_portal')">
+                        {{ __('早押しクイズ') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
                         {{ __('クイズ一覧') }}
                     </x-nav-link>
