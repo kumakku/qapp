@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('quiz_tag', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('quiz_id')->constrained('tags');
-            $table->foreignId('tag_id')->constrained('quizzes');
+            $table->foreignId('user_id')->constrained();
+            $table->string('name', 50);
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('quiz_tag');
+        Schema::dropIfExists('tags');
     }
 };

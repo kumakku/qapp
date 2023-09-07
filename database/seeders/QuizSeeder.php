@@ -16,7 +16,6 @@ class QuizSeeder extends Seeder
      */
     public function run()
     {
-        //
         DB::table('quizzes')->insert([
             'user_id' => 1,
             'body' => 'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほ',
