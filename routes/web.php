@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\HayaoshiController;
+use App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,14 @@ Route::controller(HayaoshiController::class)->middleware(['auth'])->group(functi
     Route::get('/hayaoshi/{quiz}', 'hayaoshi')->name('hayaoshi');
     Route::post('/hayaoshi/{quiz}/correct', 'correct')->name('correct');
     Route::post('/hayaoshi/{quiz}/wrong', 'wrong')->name('wrong');
+});
+
+Route::controller(TagController::class)->middleware(['auth'])->group(function(){
+    Route::get('/tags', 'tag_manager')->name('tag_manager');
+    Route::post('/tags', 'store')->name('store_tag');
+    Route::delete('/tags/{tag}', 'delete')->name('delete_tag');
+    Route::put('/tags/{tag}', 'update')->name('update_tag');
+    Route::get('/tags/{tag}/edit', 'edit')->name('edit_tag');
 });
 
 Route::get('/dashboard', function () {

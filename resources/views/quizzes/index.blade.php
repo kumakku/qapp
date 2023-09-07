@@ -20,7 +20,14 @@
                 <td><a href="/quizzes/{{ $quiz->id }}">{{ $quiz->body }}</a></td>
                 <td>{{ $quiz->answer }}</td>
                 <td>{{ $quiz->annotation }}</td>
-                <td></td>
+                <td>
+                    @php
+                        $tags = $quiz->tags()->get();
+                    @endphp
+                    @foreach ($tags as $tag)
+                        <p>{{ $tag->name }}</p>
+                    @endforeach
+                </td>
                 <td>
                     <button type="button" onclick="location.href='/quizzes/{{ $quiz->id }}/edit'">編集</button>
                 </td>

@@ -17,6 +17,9 @@
             <img src="{{ $image->path }}" alt="画像が読み込めません">
         @endforeach
         <h2>タグ</h2>
+        @foreach ($tags as $tag)
+            <p>{{ $tag->name }}</p>
+        @endforeach
         <button type="button" onclick="location.href='/quizzes/{{ $quiz->id }}/edit'">編集</button>
         <form action="/quizzes/{{ $quiz->id }}" method="POST" id="form_{{ $quiz->id }}">
             @csrf

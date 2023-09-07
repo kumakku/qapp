@@ -47,4 +47,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Quiz::class);
     }
+    
+    public function parent_tags()
+    {
+        return $this->hasMany(ParentTag::class);
+    }
+    
+    public function tags()
+    {
+        return $this->hasMany(Tag::class);
+    }
 }
