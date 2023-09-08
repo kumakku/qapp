@@ -10,6 +10,11 @@
         タグ〜のクイズは全て出題済です
         
         <!--リセットしてもう一度やるボタン 設定とかにも表示する-->
+        <form action="/hayaoshi/reset_flag" method="POST">
+            @csrf
+            @method('PUT')
+            <input type="submit" value="もう一度">
+        </form>
     </body>
     </x-app-layout>
 </html>

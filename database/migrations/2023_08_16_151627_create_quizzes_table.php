@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('body', 500);
             $table->string('answer', 100);
             $table->string('annotation', 500)->nullable();
-            $table->unsignedBigInteger('correct_num')->default(0);
-            $table->unsignedBigInteger('question_num')->default(0);
+            // $table->unsignedBigInteger('correct_num')->default(0);
+            // $table->unsignedBigInteger('question_num')->default(0);
             $table->boolean('question_flag')->default(0); //そのクイズが既に出題されたかの判定用。0なら未出題で、1なら出題済。
             $table->timestamps();
             $table->softDeletes();
