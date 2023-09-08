@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->unsignedBigInteger('interval')->default(150); //クイズ問題文の表示速度。何msごとに一文字表示するか。
             $table->unsignedBigInteger('count_down_time')->default(3); //早押しボタンを押した後のカウントダウンの秒数。単位はs
+            $table->unsignedBigInteger('accuracy_num')->default(15); //historiesテーブルに存在するクイズの正誤のうち最新の何回分を正解率の算出に用いるか
             $table->rememberToken();
             $table->timestamps();
         });

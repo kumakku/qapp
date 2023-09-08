@@ -35,6 +35,7 @@ Route::controller(QuizController::class)->middleware(['auth'])->group(function()
 Route::controller(HayaoshiController::class)->middleware(['auth'])->group(function(){
     Route::get('/hayaoshi', 'hayaoshi_portal')->name('hayaoshi_portal');
     Route::post('hayaoshi/select', 'hayaoshi_select')->name('hayaoshi_select');
+    Route::put('/hayaoshi/reset_flag', 'reset_flag')->name('reset_flag');
     Route::get('/hayaoshi/{quiz}', 'hayaoshi')->name('hayaoshi');
     Route::post('/hayaoshi/{quiz}/correct', 'correct')->name('correct');
     Route::post('/hayaoshi/{quiz}/wrong', 'wrong')->name('wrong');
