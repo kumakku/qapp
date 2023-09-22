@@ -177,6 +177,9 @@ return [
         'quiz.annotation' => [
             'max' => ':attributeは:max文字以下で入力してください'
             ],
+        'quiz.directory_id' => [
+            'required' => ':attributeは選択必須です'
+            ],
     ],
 
     /*
@@ -193,7 +196,8 @@ return [
     'attributes' => [
         'quiz.body' => '問題文',
         'quiz.answer' => '答え',
-        'quiz.annotation' => '注釈'
+        'quiz.annotation' => '注釈',
+        'quiz.directory_id' => 'ディレクトリ'
         ],
 
 ];

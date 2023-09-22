@@ -20,11 +20,11 @@
         @foreach ($tags as $tag)
             <p>{{ $tag->name }}</p>
         @endforeach
-        <button type="button" onclick="location.href='/quizzes/{{ $quiz->id }}/edit'">編集</button>
+        <button type="button" class="btn" onclick="location.href='/quizzes/{{ $quiz->id }}/edit'">編集</button>
         <form action="/quizzes/{{ $quiz->id }}" method="POST" id="form_{{ $quiz->id }}">
             @csrf
             @method('DELETE')
-            <button type="button" onclick="deleteQuiz({{ $quiz->id }})">削除</button>
+            <button type="button" class="delete_btn" onclick="deleteQuiz({{ $quiz->id }})">削除</button>
         </form>
         <script>
     		function deleteQuiz(id){

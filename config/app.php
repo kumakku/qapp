@@ -197,6 +197,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         
         CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider::class,
+        Franzose\ClosureTable\ClosureTableServiceProvider::class,
 
     ],
 

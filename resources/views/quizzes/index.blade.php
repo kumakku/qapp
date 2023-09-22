@@ -3,20 +3,26 @@
     <x-app-layout>
     <head>
         <meta charset="UTF-8"> <!-文字化け防止->
-	    <title>Quiz Database</title>
+	    <title>Index</title>
 　　</head>
     <body>
-        <input type="text" id="searchInput" placeholder="検索">
+        <form action="/" method="GET">
+            @csrf
+            <input type="search" name="word" placeholder="検索" value="{{ $word }}">
+            <input type="submit" class="btn" value="検索">
+        </form>
         <p>問題数：{{ $quizzes->count() }}</p>
-        <table border="1" id="qtable">
-            <tr>
+        <table>
+            <tr class="head_record">
                 <th>問題</th>
                 <th>答え</th>
                 <th>注釈</th>
                 <th>タグ</th>
+                <th></th>
+                <th></th>
             </tr>
             @foreach ($quizzes as $quiz)
-            <tr>
+            <tr class="record">
                 <td><a href="/quizzes/{{ $quiz->id }}">{{ $quiz->body }}</a></td>
                 <td>{{ $quiz->answer }}</td>
                 <td>{{ $quiz->annotation }}</td>
@@ -28,14 +34,12 @@
                         <p>{{ $tag->name }}</p>
                     @endforeach
                 </td>
-                <td>
-                    <button type="button" onclick="location.href='/quizzes/{{ $quiz->id }}/edit'">編集</button>
-                </td>
+                <td><button type="button" class="btn" onclick="location.href='/quizzes/{{ $quiz->id }}/edit'">編集</button></td>
                 <td>
                     <form action="/quizzes/{{ $quiz->id }}" method="POST" id="form_{{ $quiz->id }}">
                         @csrf
                         @method('DELETE')
-                        <button type="button" onclick="deleteQuiz({{ $quiz->id }})">削除</button>
+                        <button type="button" class="delete_btn" onclick="deleteQuiz({{ $quiz->id }})">削除</button>
                     </form>
                 </td>
             </tr>
