@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\HayaoshiController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\DirectoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,6 @@ Route::get('/', function () {
 });
 
 Route::controller(QuizController::class)->middleware(['auth'])->group(function(){
-    // Route::get('/', [QuizController::class, 'portal'])->name('portal');
     Route::get('/', 'index')->name('index');
     Route::post('/quizzes', 'store')->name('store');
     Route::get('/quizzes/create', 'create')->name('create');
@@ -47,6 +47,10 @@ Route::controller(TagController::class)->middleware(['auth'])->group(function(){
     Route::delete('/tags/{tag}', 'delete')->name('delete_tag');
     Route::put('/tags/{tag}', 'update')->name('update_tag');
     Route::get('/tags/{tag}/edit', 'edit')->name('edit_tag');
+});
+
+Route::controller(DirectoryController::class)->middleware(['auth'])->group(function(){
+    Route::get('/directories', 'directory_manager')->name('directory_manager');
 });
 
 Route::get('/dashboard', function () {

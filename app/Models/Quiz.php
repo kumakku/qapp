@@ -35,6 +35,11 @@ class Quiz extends Model
         return $this->hasMany(History::class);
     }
     
+    public function directory()
+    {
+        return $this->belongsTo(Directory::class);
+    }
+    
     public function getOnlyLoginUser()
     {
         $user_id = auth()->id();
@@ -107,6 +112,7 @@ class Quiz extends Model
         'body',
         'answer',
         'annotation',
+        'directory_id'
         ];
         
     //あるクイズが削除された際に、それに付随する画像全てを物理削除する

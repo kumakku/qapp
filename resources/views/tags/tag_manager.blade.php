@@ -11,17 +11,18 @@
             <h2>タグを作成</h2>
             <input type="text" name="tag_name" placeholder="タグを新規作成" value={{ old('tag_name') }}>
             <br>
-            <input type="submit" value="保存">
+            <input type="submit" class="btn" value="保存">
         </form>
         <h2>タグを編集・削除</h2>
         @foreach($tags as $tag)
             {{ $tag->name }}
-            <button type="button" onclick="location.href='/tags/{{ $tag->id }}/edit'">編集</button>
-            <form action="/tags/{{ $tag->id }}" method="POST" id="form_{{ $tag->id }}">
+            <button type="button" class="btn" onclick="location.href='/tags/{{ $tag->id }}/edit'">編集</button>
+            <form action="/tags/{{ $tag->id }}" method="POST" id="form_{{ $tag->id }}" style="display:inline">
                 @csrf
                 @method('DELETE')
-                <button type="button" onclick="deleteTag({{ $tag->id }})">削除</button>
+                <button type="button" class="delete_btn" onclick="deleteTag({{ $tag->id }})">削除</button>
             </form>
+            <br>
         @endforeach
         
         <script>

@@ -16,13 +16,17 @@ class HayaoshiController extends Controller
     {
         $interval = Auth::user()->interval;
         $count_down_time = Auth::user()->count_down_time;
-        if ($quiz->user_id == auth()->id()){
+        if ($quiz->user_id == auth()->id() && $quiz->question_flag == 0){
             return view('hayaoshi.hayaoshi')->with([
                 'quiz' => $quiz, 
-                'images' => $quiz->images()->get(), 
+                'images' => $quiz->images()->get(),
+                'tags' => $quiz->tags()->get(),
                 'interval' => $interval,
                 'count_down_time' => $count_down_time
                 ]);
+        }elseif($quiz->user_id == auth()->id()){
+            return 'このクイズは学習済みです';
+            //bladeファイルを作って、フラッグリセットのボタンとともに表示したい
         }else{
             return view('cannot_show');
         }

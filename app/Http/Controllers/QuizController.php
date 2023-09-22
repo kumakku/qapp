@@ -2,23 +2,35 @@
 
 namespace App\Http\Controllers;
 
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use App\Http\Requests\QuizRequest;
 use App\Models\Quiz;
 use App\Models\Image;
 use App\Models\Tag;
+use App\Models\Directory;
 use Cloudinary;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
 {
-    //
-    public function index(Quiz $quiz)
+    public function index(Request $request, Quiz $quiz)
     {
-        //return view('quizzes.index')->with(['quizzes' => $quiz->getPaginateByLimit()]);
-        $user_id = auth()->id();
-        return view('quizzes.index')->with(['quizzes' => $quiz->getOnlyLoginUser()]);
+        $user_id = Auth::user()->id;
+        $word = $request->input('word');
+        if(!empty($word)){
+            $quizzes = $quiz
+                        ->where([
+                            ['user_id', $user_id],
+                            ['body', 'like', '%'.$word.'%']
+                        ])->orWhere([
+                            ['user_id', $user_id],
+                            ['answer', 'like', '%'.$word.'%']
+                        ])->get();
+        }else{
+            $quizzes = $quiz->getOnlyLoginUser();
+        }
+        return view('quizzes.index')->with(['quizzes' => $quizzes, 'word' => $word]);
     }
     
     public function show(Quiz $quiz)
@@ -35,9 +47,10 @@ class QuizController extends Controller
         }
     }
     
-    public function create(Tag $tag)
+    public function create(Tag $tag, Directory $directory)
     {
-        return view('quizzes.create')->with(['tags' => $tag->getOnlyLoginUser()]);
+        $user_id = Auth::user()->id;
+        return view('quizzes.create')->with(['tags' => $tag->getOnlyLoginUser(), 'directories' => $directory->where('user_id', $user_id)->get()->toTree()]);
     }
     
     public function store(QuizRequest $request, Quiz $quiz)
@@ -71,14 +84,16 @@ class QuizController extends Controller
         return redirect('/quizzes/'.$quiz->id);
     }
     
-    public function edit(Quiz $quiz, Tag $tag)
+    public function edit(Quiz $quiz, Tag $tag, Directory $directory)
     {
-        if ($quiz->user_id == auth()->id()){
+        $user_id = Auth::user()->id;
+        if ($quiz->user_id == $user_id){
             return view('quizzes.edit')->with([
                 'quiz' => $quiz, 
                 'images' => $quiz->images()->get(),
                 'tags' => $tag->getOnlyLoginUser(),
-                'selected_tags' => $quiz->tags()->get()
+                'selected_tags' => $quiz->tags()->get(),
+                'directories' => $directory->where('user_id', $user_id)->get()->toTree()
                 ]);
         }else{
             return view('cannot_show');

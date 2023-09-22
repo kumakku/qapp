@@ -57,4 +57,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tag::class);
     }
+    
+    public function directories()
+    {
+        return $this->hasMany(Directory::class);
+    }
 }

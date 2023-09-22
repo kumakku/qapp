@@ -8,10 +8,12 @@
     <body>
         タグで絞り込んでから早押しクイズを開始する
         <br>
-        <form action="/hayaoshi/select" method="POST">
-            @csrf
-            <input type="submit" value="スタート">
-        </form>
+        <div class="flex justify-center">
+            <form action="/hayaoshi/select" method="POST">
+                @csrf
+                <input type="submit" class="btn" value="スタート">
+            </form>
+        </div>
     </body>
     </x-app-layout>
 </html>

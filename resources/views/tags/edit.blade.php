@@ -20,7 +20,7 @@
             @endif
             <input type="text" name="tag_name" placeholder="タグ名を変更" value={{ $body }}>
             <br>
-            <input type="submit" value="保存">
+            <input type="submit" class="btn" value="保存">
         </form>
     </body>
     </x-app-layout>

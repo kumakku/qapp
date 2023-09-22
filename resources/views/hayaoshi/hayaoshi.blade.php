@@ -6,34 +6,51 @@
 	    <title>Hayaoshi</title>
 　　</head>
     <body>
-        <h2>問題文をここに表示</h2>
-        <p id="body"></p>
-        <p id="count_down"></p>
-        <button id="hayaoshi" type="button" onclick="stopQuiz()">早押しボタン</button>
-        <div id="qinfo" style="display:none">
-            <h2>答え</h2>
-            <p>{{ $quiz->answer }}</p>
-            <form action="/hayaoshi/{{ $quiz->id }}/correct" method="POST">
-                @csrf
-                <input type="submit" value="○">
-            </form>
-            <form action="/hayaoshi/{{ $quiz->id }}/wrong" method="POST">
-                @csrf
-                <input type="submit" value="×">
-            </form>
-            <h2>注釈</h2>
-            <p>{{ $quiz->annotation }}</p>
-            <h2>画像</h2>
-            @foreach ($images as $image)
-                <img src="{{ $image->path }}" alt="画像が読み込めません">
-            @endforeach
-            <h2>タグ</h2>
-            <button type="button" onclick="location.href='/quizzes/{{ $quiz->id }}/edit'">編集</button>
-            <form action="/quizzes/{{ $quiz->id }}" method="POST" id="form_{{ $quiz->id }}">
-                @csrf
-                @method('DELETE')
-                <button type="button" onclick="deleteQuiz({{ $quiz->id }})">削除</button>
-            </form>
+        <div class="container mx-auto px-6">
+            <h2>問題</h2>
+            <p id="body" class="qtext">　</p>
+            <p id="count_down" class="qtext text-center">　</p>
+            <div class="flex justify-center">
+                <button id="hayaoshi" class="btn" type="button" onclick="stopQuiz()">早押しボタン</button>
+            </div>
+            <div id="qinfo" style="display:none">
+                <div class="flex justify-center">
+                    <h2>答え </h2>
+                    <p class="qtext">{{ $quiz->answer }}</p>
+                </div>
+                <div class="flex justify-center">
+                    <form action="/hayaoshi/{{ $quiz->id }}/correct" method="POST">
+                        @csrf
+                        <input type="submit" class="delete_btn" value="○">
+                    </form>
+                    <form action="/hayaoshi/{{ $quiz->id }}/wrong" method="POST">
+                        @csrf
+                        <input type="submit" class="btn" value="×">
+                    </form>
+                    <br>
+                </div>
+                @isset($quiz->annotation)
+                    <h2>注釈</h2>
+                    <p class="qtext">{{ $quiz->annotation }}</p>
+                @endisset
+                @if($images->count()>0)
+                    <h2>画像</h2>
+                    @foreach ($images as $image)
+                        <img src="{{ $image->path }}" alt="画像が読み込めません">
+                    @endforeach
+                @endif
+                @if($tags->count()>0)
+                    <h2>タグ</h2>
+                @endif
+                <div class="flex justify-center">
+                    <button type="button" class="btn" onclick="location.href='/quizzes/{{ $quiz->id }}/edit'">編集</button>
+                    <form action="/quizzes/{{ $quiz->id }}" method="POST" id="form_{{ $quiz->id }}" style="display:inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="delete_btn" onclick="deleteQuiz({{ $quiz->id }})">削除</button>
+                    </form>
+                </div>
+            </div>
         </div>
         
         @php
