@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\Directory;
+use App\Models\Tag;
+
 class Quiz extends Model
 {
     use HasFactory;
@@ -67,14 +70,20 @@ class Quiz extends Model
     }
     
     //正解率によって重み付けした確率でクイズを取得する
-    public function getWeightedQuiz()
+    public function getWeightedQuiz($directory_ids, $tag_ids)
     {
-        $user_id = auth()->id();
-        $quizzes = $this->where([
-            ['user_id', $user_id],
-            ['question_flag', 0],
-            ])->get();
-        $array = [];
+        $user_id = Auth::user()->id;
+        $quizzes = $this
+            ->where([['user_id', $user_id], ['question_flag', 0]])
+            ->whereIn('directory_id', $directory_ids)
+            ->get();
+        if(isset($tag_ids)){
+            foreach($tag_ids as $tag_id){
+                $quizzes = $quizzes->intersect(Tag::find($tag_id)->quizzes()->get());
+            }
+        }
+
+        $array = []; //クイズの重みを格納する配列
         $qindex = 0;
         foreach($quizzes as $quiz){
             $accuracy = $quiz->accuracy();

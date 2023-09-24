@@ -34,8 +34,9 @@ Route::controller(QuizController::class)->middleware(['auth'])->group(function()
 
 Route::controller(HayaoshiController::class)->middleware(['auth'])->group(function(){
     Route::get('/hayaoshi', 'hayaoshi_portal')->name('hayaoshi_portal');
-    Route::post('hayaoshi/select', 'hayaoshi_select')->name('hayaoshi_select');
+    Route::post('hayaoshi/start', 'start_button_pressed')->name('hayaoshi_start');
     Route::put('/hayaoshi/reset_flag', 'reset_flag')->name('reset_flag');
+    Route::get('/hayaoshi/all_used', 'all_used')->name('all_used');
     Route::get('/hayaoshi/{quiz}', 'hayaoshi')->name('hayaoshi');
     Route::post('/hayaoshi/{quiz}/correct', 'correct')->name('correct');
     Route::post('/hayaoshi/{quiz}/wrong', 'wrong')->name('wrong');
@@ -61,6 +62,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile/preferences', [ProfileController::class, 'preferences'])->name('profile.preferences');
 });
 
 require __DIR__.'/auth.php';

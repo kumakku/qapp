@@ -9,10 +9,13 @@
         <div class="container mx-auto px-6">
             <h2>問題</h2>
             <p id="body" class="qtext">　</p>
-            <p id="count_down" class="qtext text-center">　</p>
+            
+            <p id="count_down" class="qtext text-center">カウントダウンをここに表示</p>
+            
             <div class="flex justify-center">
                 <button id="hayaoshi" class="btn" type="button" onclick="stopQuiz()">早押しボタン</button>
             </div>
+            
             <div id="qinfo" style="display:none">
                 <div class="flex justify-center">
                     <h2>答え </h2>
@@ -41,6 +44,9 @@
                 @endif
                 @if($tags->count()>0)
                     <h2>タグ</h2>
+                    @foreach($tags as $tag)
+                        {{ $tag->name }}
+                    @endforeach
                 @endif
                 <div class="flex justify-center">
                     <button type="button" class="btn" onclick="location.href='/quizzes/{{ $quiz->id }}/edit'">編集</button>
