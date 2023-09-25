@@ -169,17 +169,33 @@ return [
         'quiz.body' => [
             'required' => ':attributeは入力必須です',
             'max' => ':attributeは:max文字以下で入力してください'
-            ],
+        ],
         'quiz.answer' => [
             'required' => ':attributeは入力必須です',
             'max' => ':attributeは:max文字以下で入力してください'
-            ],
+        ],
         'quiz.annotation' => [
             'max' => ':attributeは:max文字以下で入力してください'
-            ],
+        ],
         'quiz.directory_id' => [
             'required' => ':attributeは選択必須です'
-            ],
+        ],
+        'import' => [
+            'required' => ':attributeは選択必須です',
+            'mimes' => ':attributeの拡張子は:valuesのいずれかとしてください'
+        ],
+        'directory' => [
+            'required' => ':attributeは選択必須です'
+        ],
+        'column_num_array.*' => [
+            'size' => ':attributeは:sizeである必要があります'
+        ],
+        'file_array.*.body' => [
+            'required' => ':attributeは問題に対応するカラムのため入力必須です'
+        ],
+        'file_array.*.answer' => [
+            'required' => ':attributeは答えに対応するカラムのため入力必須です'
+        ],
     ],
 
     /*
@@ -197,7 +213,12 @@ return [
         'quiz.body' => '問題文',
         'quiz.answer' => '答え',
         'quiz.annotation' => '注釈',
-        'quiz.directory_id' => 'ディレクトリ'
+        'quiz.directory_id' => 'ディレクトリ',
+        'import' => 'ファイル',
+        'directory' => 'ディレクトリ',
+        'column_num_array.*' => ':position行目のカラム数',
+        'file_array.*.body' => ':position行目の1列目',
+        'file_array.*.answer' => ':position行目の2列目',
         ],
 
 ];

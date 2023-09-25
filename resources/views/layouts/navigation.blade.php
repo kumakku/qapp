@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('create')" :active="request()->routeIs('create')">
                         {{ __('クイズ作成') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('prepare')" :active="request()->routeIs('prepare')">
+                        {{ __('CSVインポート') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('directory_manager')" :active="request()->routeIs('directory_manager')">
                         {{ __('ディレクトリ管理') }}
                     </x-nav-link>

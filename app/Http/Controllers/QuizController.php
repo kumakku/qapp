@@ -26,7 +26,7 @@ class QuizController extends Controller
                         ])->orWhere([
                             ['user_id', $user_id],
                             ['answer', 'like', '%'.$word.'%']
-                        ])->get();
+                        ])->paginate($quiz->limit_count);
         }else{
             $quizzes = $quiz->getOnlyLoginUser();
         }
@@ -40,7 +40,8 @@ class QuizController extends Controller
             return view('quizzes.show')->with([
                 'quiz' => $quiz, 
                 'images' => $quiz->images()->get(),
-                'tags' => $quiz->tags()->get()
+                'tags' => $quiz->tags()->get(),
+                'directory' => Directory::find($quiz->directory_id),
                 ]);
         }else{
             return view('cannot_show');
@@ -94,7 +95,7 @@ class QuizController extends Controller
                 'tags' => $tag->getOnlyLoginUser(),
                 'selected_tags' => $quiz->tags()->get(),
                 'directories' => $directory->where('user_id', $user_id)->get()->toTree()
-                ]);
+            ]);
         }else{
             return view('cannot_show');
         }
