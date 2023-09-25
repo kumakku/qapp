@@ -15,6 +15,8 @@ class Quiz extends Model
     use HasFactory;
     use SoftDeletes;
     
+    public int $limit_count = 100;
+    
     //Userに対するリレーション
     public function user()
     {
@@ -46,7 +48,7 @@ class Quiz extends Model
     public function getOnlyLoginUser()
     {
         $user_id = auth()->id();
-        return $this->where('user_id', $user_id)->orderBy('updated_at', 'DESC')->get();
+        return $this->where('user_id', $user_id)->orderBy('updated_at', 'DESC')->paginate($this->limit_count);
     }
     
     //クイズの正解率
@@ -131,10 +133,5 @@ class Quiz extends Model
         static::deleting(function ($quiz){
             $quiz->images()->delete();
         });
-    }
-    
-    public function getPaginateByLimit(int $limit_count = 10)
-    {
-        return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
 }

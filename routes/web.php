@@ -6,6 +6,7 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\HayaoshiController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\DirectoryController;
+use App\Http\Controllers\ImportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,11 @@ Route::controller(TagController::class)->middleware(['auth'])->group(function(){
 
 Route::controller(DirectoryController::class)->middleware(['auth'])->group(function(){
     Route::get('/directories', 'directory_manager')->name('directory_manager');
+});
+
+Route::controller(ImportController::class)->middleware(['auth'])->group(function(){
+    Route::post('/import', 'store')->name('import_store');
+    Route::get('/import/prepare', 'prepare')->name('prepare');
 });
 
 Route::get('/dashboard', function () {

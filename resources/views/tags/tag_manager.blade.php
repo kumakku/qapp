@@ -15,7 +15,6 @@
         </form>
         <h2>タグを編集・削除</h2>
         @foreach($tags as $tag)
-            {{dd($tags)}}
             {{ $tag->name }}
             <button type="button" class="btn" onclick="location.href='/tags/{{ $tag->id }}/edit'">編集</button>
             <form action="/tags/{{ $tag->id }}" method="POST" id="form_{{ $tag->id }}" style="display:inline">
