@@ -6,20 +6,19 @@
 	    <title>Directory</title>
 　　</head>
     <body>
-        <ul>
-            @foreach($directories as $directory)
-                <li class="parent" onclick="openClose(this)">
-                    {{ $directory->name }}
-                    @includeWhen($directory->hasChildren(), 'directories.recursive', ['directories' => $directory->getChildren()])
-                </li>
-            @endforeach
-        </ul>
-        
-        <script>
-            function openClose(e){
-                e.classList.toggle('active');
-            }
-        </script>
+        @if($directories->count() > 0)
+            <ul>
+                @foreach($directories as $directory)
+                    <li>
+                        {{ $directory->name }}
+                        @includeWhen($directory->hasChildren(), 'directories.recursive', ['directories' => $directory->getChildren()])
+                    </li>
+                @endforeach
+            </ul>
+        @else
+            クイズを追加するにはディレクトリを作成する必要があります
+        @endisset
+        <!--ルートディレクトリの新規作成-->
     </body>
     </x-app-layout>
 </html>

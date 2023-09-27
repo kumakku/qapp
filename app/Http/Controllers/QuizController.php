@@ -51,7 +51,12 @@ class QuizController extends Controller
     public function create(Tag $tag, Directory $directory)
     {
         $user_id = Auth::user()->id;
-        return view('quizzes.create')->with(['tags' => $tag->getOnlyLoginUser(), 'directories' => $directory->where('user_id', $user_id)->get()->toTree()]);
+        if (Auth::user()->directories()->count() > 0){
+            return view('quizzes.create')->with(['tags' => $tag->getOnlyLoginUser(), 'directories' => $directory->where('user_id', $user_id)->get()->toTree()]);
+        }else{
+            return redirect()->route('directory_manager'); //ディレクトリが存在しないとそもそもクイズが作成できないので、ディレクトリを作成させる
+        }
+        
     }
     
     public function store(QuizRequest $request, Quiz $quiz)

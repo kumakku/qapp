@@ -24,7 +24,14 @@ class TagSeeder extends Seeder
     			'updated_at' => new DateTime(),
                 ]);
         }
-            
+        
+        DB::table('tags')->insert([
+                'user_id' => 1,
+                'name' => '自作',
+                'created_at' => new DateTime(),
+    			'updated_at' => new DateTime(),
+                ]);
+        
         foreach ($this->genres as $genre){
             DB::table('tags')->insert([
                 'user_id' => 1,
@@ -33,14 +40,8 @@ class TagSeeder extends Seeder
     			'updated_at' => new DateTime(),
                 ]);
         }
-        
-        DB::table('tags')->insert([
-                'user_id' => 1,
-                'name' => '自作',
-                'created_at' => new DateTime(),
-    			'updated_at' => new DateTime(),
-                ]);
     }
+    
     private $genres = [
             '理系',
             '文学',

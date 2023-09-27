@@ -34,7 +34,7 @@
                         <option value={{ $tag->id }}>{{ $tag->name }}</option>
                     @endforeach
                 </select>
-                <br>
+                <p class="require">ディレクトリとタグを選択しない場合は登録している全てのクイズが出題されます</p>
                 <input type="submit" class="btn" value="スタート">
             </form>
         </div>

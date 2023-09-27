@@ -15,9 +15,13 @@ class ImportController extends Controller
 {
     public function prepare(Tag $tag, Directory $directory)
     {
-        return view('import.prepare')->with([
-            'directories' => $directory->where('user_id', Auth::user()->id)->get()->toTree(),
-        ]);
+        if (Auth::user()->directories()->count() > 0){
+            return view('import.prepare')->with([
+                'directories' => $directory->where('user_id', Auth::user()->id)->get()->toTree(),
+            ]);
+        }else{
+            return redirect()->route('directory_manager'); //ディレクトリが存在しないとそもそもクイズが作成できないので、ディレクトリを作成させる
+        }
     }
     
     public function store(ImportRequest $request, Quiz $quiz)
