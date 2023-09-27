@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Event;
 
 use App\Models\User;
 use App\Observers\UserObserver;
+use App\Models\Directory;
+use App\Observers\DirectoryObserver;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -31,6 +33,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         User::observe(UserObserver::class);
+        Directory::observe(DirectoryObserver::class);
     }
 
     /**

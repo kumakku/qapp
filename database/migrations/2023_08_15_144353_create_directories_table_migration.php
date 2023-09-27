@@ -22,8 +22,8 @@ class CreateDirectoriesTableMigration extends Migration
 
             $table->foreign('parent_id')
                 ->references('id')
-                ->on('directories')
-                ->onDelete('set null');
+                ->on('directories');
+                // ->onDelete('set null');
 
         });
 

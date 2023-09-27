@@ -20,7 +20,7 @@ class UserObserver
         // 新規ユーザー用のデフォルトのディレクトリとタグ
         $directory = new Directory();
         $directory->user_id = $user->id;
-        $directory->name = $user->name;
+        $directory->name = 'クイズ';
         $directory->created_at = new Datetime();
         $directory->updated_at = new Datetime();
         $directory->save();
@@ -73,7 +73,7 @@ class UserObserver
         
     }
     
-    //deletedは削除後に呼び出されるが、deletingは削除前に呼び出される
+    //deletedは削除後に呼び出されるが、deletingは削除直前に呼び出される
     public function deleting(User $user)
     {
         $user->quizzes()->delete(); //一度論理削除
