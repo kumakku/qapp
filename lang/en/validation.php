@@ -196,6 +196,9 @@ return [
         'file_array.*.answer' => [
             'required' => ':attributeは答えに対応するカラムのため入力必須です'
         ],
+        'directory_name' => [
+            'required' => ':attributeは入力必須です'
+        ],
     ],
 
     /*
@@ -219,6 +222,7 @@ return [
         'column_num_array.*' => ':position行目のカラム数',
         'file_array.*.body' => ':position行目の1列目',
         'file_array.*.answer' => ':position行目の2列目',
+        'directory_name' => 'ディレクトリ名'
         ],
 
 ];

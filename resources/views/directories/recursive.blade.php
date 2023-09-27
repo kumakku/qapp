@@ -7,8 +7,8 @@
     <body>
         <ul>
             @foreach($directories as $directory)
-                <li class="parent">
-                    {{ $directory->name }}
+                <li>
+                    <a href="/directories/{{ $directory->id }}">{{ $directory->name }}</a>
                     @includeWhen($directory->hasChildren(), 'directories.recursive', ['directories' => $directory->getChildren()])
                 </li>
             @endforeach

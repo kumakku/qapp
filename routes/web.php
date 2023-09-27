@@ -53,6 +53,11 @@ Route::controller(TagController::class)->middleware(['auth'])->group(function(){
 
 Route::controller(DirectoryController::class)->middleware(['auth'])->group(function(){
     Route::get('/directories', 'directory_manager')->name('directory_manager');
+    Route::post('/directories/create', 'create')->name('directory_create');
+    Route::get('/directories/{directory}', 'show')->name('directory_show');
+    Route::put('/directories/{directory}', 'update')->name('directory_update');
+    Route::delete('/directories/{directory}', 'delete')->name('directory_delete');
+    Route::get('/directories/{directory}/edit', 'edit')->name('directory_edit');
 });
 
 Route::controller(ImportController::class)->middleware(['auth'])->group(function(){
