@@ -11,7 +11,7 @@ Email: test@example.com <br>
 Password: password
 ## 使い方
 ### クイズ一覧
-ログインや新規登録後に最初に表示されるページです。クイズがまだない場合は「[クイズ作成](https://github.com/kumakku/qapp/edit/master/README.md#%E3%82%AF%E3%82%A4%E3%82%BA%E4%BD%9C%E6%88%90)」または「[CSVインポート](https://github.com/kumakku/qapp/edit/master/README.md#csv%E3%82%A4%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%88)」からクイズを追加してください。<br>
+ログインや新規登録後に最初に表示されるページです。クイズがまだない場合は「[クイズ作成](https://github.com/kumakku/qapp#%E3%82%AF%E3%82%A4%E3%82%BA%E4%BD%9C%E6%88%90)」または「[CSVインポート]([https://github.com/kumakku/qapp/edit/master/README.md#csv%E3%82%A4%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%88](https://github.com/kumakku/qapp#csv%E3%82%A4%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%88))」からクイズを追加してください。<br>
 クイズがある場合は以下のようにテーブル形式で一覧表示されます。
 - 問題文をクリックするとクイズの詳細情報が表示されます。
 - 左上の検索窓にキーワードを入力することでクイズを絞り込むことができます。
