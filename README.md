@@ -30,6 +30,14 @@ Password: password
 ![hayaoshi-84f9bd8fe80b herokuapp com_quizzes_create](https://github.com/kumakku/qapp/assets/136096006/8b60f4a8-6c1c-4240-90ea-b9d024ec5d69)
 
 ### CSVインポート
+#### ファイルを選択
+以下のような各行が「問題文,答え」の形式のcsvファイルを選択してください。
+<img width="1061" alt="スクリーンショット 2023-09-28 16 26 18" src="https://github.com/kumakku/qapp/assets/136096006/5ad71390-6d6d-4773-b04c-ad4037a6183a">
+#### [ディレクトリ](https://github.com/kumakku/qapp#%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA) を選択
+csvファイル内の全てのクイズは単一のディレクトリに所属します。
+
+![hayaoshi-84f9bd8fe80b herokuapp com_import_prepare](https://github.com/kumakku/qapp/assets/136096006/31340475-80ba-452c-89c7-4dd9d390ecc7)
+
 ### 早押しクイズ
 ### ディレクトリ
 ### タグ
