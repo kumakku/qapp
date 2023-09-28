@@ -11,7 +11,7 @@ Email: test@example.com <br>
 Password: password
 ## 使い方
 ### クイズ一覧
-ログインや新規登録後に最初に表示されるページです。クイズがまだない場合は「[クイズ作成](https://github.com/kumakku/qapp#%E3%82%AF%E3%82%A4%E3%82%BA%E4%BD%9C%E6%88%90)」または「[CSVインポート]([https://github.com/kumakku/qapp/edit/master/README.md#csv%E3%82%A4%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%88](https://github.com/kumakku/qapp#csv%E3%82%A4%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%88))」からクイズを追加してください。<br>
+ログインや新規登録後に最初に表示されるページです。クイズがまだない場合は「[クイズ作成](https://github.com/kumakku/qapp#%E3%82%AF%E3%82%A4%E3%82%BA%E4%BD%9C%E6%88%90)」または「[CSVインポート](https://github.com/kumakku/qapp#csv%E3%82%A4%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%88)」からクイズを追加してください。<br>
 クイズがある場合は以下のようにテーブル形式で一覧表示されます。
 - 問題文をクリックするとクイズの詳細情報が表示されます。
 - 左上の検索窓にキーワードを入力することでクイズを絞り込むことができます。
@@ -19,6 +19,16 @@ Password: password
 <img width="1158" alt="image" src="https://github.com/kumakku/qapp/assets/136096006/162f2482-4a66-43d5-8d4a-0ff06ded07f8">
 
 ### クイズ作成
+以下の項目を入力することで、新しいクイズを追加できます。
+
+- 問題 **(入力必須)**
+- 答え **(入力必須)**
+- [ディレクトリ](https://github.com/kumakku/qapp#%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA) **(選択必須)**
+- 注釈 (記入しなくても可。メモしたいことがあれば)
+- 画像 (追加しなくても可。複数の画像を追加可能。)
+- タグ (選択しなくても可。複数のタグを付けることが可能。)
+![hayaoshi-84f9bd8fe80b herokuapp com_quizzes_create](https://github.com/kumakku/qapp/assets/136096006/8b60f4a8-6c1c-4240-90ea-b9d024ec5d69)
+
 ### CSVインポート
 ### 早押しクイズ
 ### ディレクトリ
