@@ -1,66 +1,66 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 早押しクイズ練習アプリ
+## 概要
+早押しクイズのプレイヤーが「問題をより早く押す技術」を身につけられるような練習用アプリです。<br>
+知識はある程度ある(クイズ大会でペーパークイズは安定して突破できる)けれど、早押しが苦手だなぁと感じていたので作成してみました。大ざっぱに説明するとAnkiに早押し機能がついたようなアプリです。<br>
+いわゆる短文基本とか、ベタ問とか、そういったクイズへの反応速度を上げて、実戦の場で機能するレベルまで持っていくことができるかと思います。
+## 使用技術
+PHP, Laravel, HTML, CSS, Tailwind, JavaScript, MariaDB <br>
+ClosureTable(ディレクトリでクイズを階層的に管理するために使用), Cloudinary(画像投稿機能のため使用)
+## テストアカウント
+Email: test@example.com <br>
+Password: password
+## 使い方
+### クイズ一覧
+ログインや新規登録後に最初に表示されるページです。クイズがまだない場合は「[クイズ作成](https://github.com/kumakku/qapp#%E3%82%AF%E3%82%A4%E3%82%BA%E4%BD%9C%E6%88%90)」または「[CSVインポート](https://github.com/kumakku/qapp#csv%E3%82%A4%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%88)」からクイズを追加してください。<br>
+クイズがある場合は以下のようにテーブル形式で一覧表示されます。
+- 問題文をクリックするとクイズの詳細情報が表示されます。
+- 左上の検索窓にキーワードを入力することでクイズを絞り込むことができます。
+- 編集・削除ボタンからそれぞれのクイズを編集・削除することができます。
+<img width="1158" alt="image" src="https://github.com/kumakku/qapp/assets/136096006/162f2482-4a66-43d5-8d4a-0ff06ded07f8">
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### クイズ作成
+以下の項目を入力することで、新しいクイズを追加できます。
 
-## About Laravel
+- 問題 **(入力必須)**
+- 答え **(入力必須)**
+- [ディレクトリ](https://github.com/kumakku/qapp#%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA) **(選択必須)**
+- 注釈 (記入しなくても可。メモしたいことがあれば)
+- 画像 (追加しなくても可。複数の画像を追加可能。)
+- タグ (選択しなくても可。複数のタグを付けることが可能。)
+![hayaoshi-84f9bd8fe80b herokuapp com_quizzes_create](https://github.com/kumakku/qapp/assets/136096006/8b60f4a8-6c1c-4240-90ea-b9d024ec5d69)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### CSVインポート
+#### ファイルを選択
+以下のような各行が「問題文,答え」の形式のcsvファイルを選択してください。
+<img width="1061" alt="スクリーンショット 2023-09-28 16 26 18" src="https://github.com/kumakku/qapp/assets/136096006/5ad71390-6d6d-4773-b04c-ad4037a6183a">
+#### [ディレクトリ](https://github.com/kumakku/qapp#%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA) を選択
+csvファイル内の全てのクイズは単一のディレクトリに所属します。
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+![hayaoshi-84f9bd8fe80b herokuapp com_import_prepare](https://github.com/kumakku/qapp/assets/136096006/31340475-80ba-452c-89c7-4dd9d390ecc7)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 早押しクイズ
+#### スタート画面
+ディレクトリやタグを選択してクイズを絞り込むこともできます。特に選択しなかった場合はユーザーが持つ全てのクイズが出題されます。
+![hayaoshi-84f9bd8fe80b herokuapp com_hayaoshi](https://github.com/kumakku/qapp/assets/136096006/17764b20-230a-4c64-a2dd-51b118e06dcc)
+#### 早押し画面
+1. 画面が読み込まれると問題文の表示がスタートします。
+2. 早押しボタンを押すして問題文表示を停止するか、問題文が全て表示されると、問題文とボタンの間にカウントダウン(デフォルトは3秒)が表示されます。この間に答えを思い出せるようにしましょう。
+3. カウントダウンが0になると早押しボタンの下に答えなどが表示されます。
+4. 答えを思い出せたかどうかに応じて○か×のボタンを押すと次のクイズが表示されます(出題履歴にも結果が追加されます)。○ボタンを押したクイズについては出題済フラッグをリセットしない限りは出題されなくなります。
+##### クイズの出題確率と○×ボタンについて
+クイズが出題される確率は過去の出題履歴から算出した正解率によって重み付けされています。よく間違えてしまうクイズは頻繁に出題され、あまり間違えないクイズについては出題頻度が下がります。<br>
+クイズの正解率は (正答数)/(出題数) によって算出されます。出題数や正答数の算出には最大で直近15回分の出題履歴が参照されます。つまり最近の学習の結果のみがクイズの出題確率に反映されるようになっています。
+![hayaoshi-84f9bd8fe80b herokuapp com_hayaoshi_1](https://github.com/kumakku/qapp/assets/136096006/2d890e48-3070-4db6-9cfd-e90e56481186)
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### ディレクトリ
+一般的なコンピュータにおけるディレクトリやフォルダと同様の機能で、クイズを階層的に分類・管理することができます。クイズ大会ごと、あるいは問題傾向ごとにクイズを分類・管理することで効率的な学習が行えます。
+#### ディレクトリ管理画面
+ディレクトリの一覧が表示されます。ユーザー登録したばかりの場合は「クイズ」という名前のルートディレクトリが一つだけ存在するはずです。各ディレクトリ名をクリックすることで[ディレクトリ詳細画面](https://github.com/kumakku/qapp#%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E8%A9%B3%E7%B4%B0%E7%94%BB%E9%9D%A2)へ遷移します。<br>
+ルートディレクトリとは下の画像で言う「短文基本」や「鳥居」のことで、階層が最も上のディレクトリのことを指します。画面最下部にあるテキストボックスから新たにルートディレクトリを作成することができます。
+![hayaoshi-84f9bd8fe80b herokuapp com_directories](https://github.com/kumakku/qapp/assets/136096006/c55f101d-31b0-48f5-88f1-3736c00a0022)
+#### ディレクトリ詳細画面
+あるディレクトリの親ディレクトリ、子ディレクトリ、およびそのディレクトリ自体に所属するクイズが表示されます。子ディレクトリに所属しているクイズはここでは表示されないので、確認する場合は子ディレクトリの詳細画面を見る必要があります。<br>
+ディレクトリの名称変更、削除、およびそのディレクトリに属する子ディレクトリの新規作成が可能です。ディレクトリの削除を行うと、そのディレクトリに属するクイズ、子ディレクトリ、子ディレクトリに所属するクイズも含めて全てが削除されます。例えば以下の画像の「短文基本」ディレクトリを削除すると、「短文基本」ディレクトリに属する2問のクイズ、「abc」や「abc the1st」といった子ディレクトリ、およびそれら子ディレクトリに属する全てのクイズが削除されます。
+![hayaoshi-84f9bd8fe80b herokuapp com_directories_1](https://github.com/kumakku/qapp/assets/136096006/0a3069a7-bf4b-4796-85ce-707d345ed533)
+### タグ
+難易度ごと、ジャンルごとなどのタグをクイズにつけることが可能です。タグの新規作成・名称変更・削除などは「タグ管理」の画面から行うことができます。
