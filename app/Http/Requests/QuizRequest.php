@@ -24,9 +24,9 @@ class QuizRequest extends FormRequest
     public function rules()
     {
         return [
-            'quiz.body' => 'required|max:60', //テスト用に短め設定。本当は500
-            'quiz.answer' => 'required|max:20', //本当は100
-            'quiz.annotation' => 'max:10', //本当は500
+            'quiz.body' => 'required|max:500', //テスト用に短め設定。本当は500
+            'quiz.answer' => 'required|max:100', //本当は100
+            'quiz.annotation' => 'max:500', //本当は500
             'quiz.directory_id' => 'required'
         ];
     }

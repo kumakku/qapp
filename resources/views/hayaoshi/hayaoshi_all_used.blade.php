@@ -18,11 +18,11 @@
         </p>
         
         <!--リセットしてもう一度やるボタン 設定とかにも表示する-->
-        <form action="/hayaoshi/reset_flag" method="POST">
-            @csrf
-            @method('PUT')
-            <input type="submit" value="出題済をリセット" class="btn">
-        </form>
+        <!--<form action="/hayaoshi/reset_flag" method="POST">-->
+        <!--    @csrf-->
+        {{--    @method('PUT')--}}
+        <!--    <input type="submit" value="出題済をリセット" class="btn">-->
+        <!--</form>-->
     </body>
     </x-app-layout>
 </html>

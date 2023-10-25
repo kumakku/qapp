@@ -69,13 +69,14 @@ class HayaoshiController extends Controller
         ]);
     }
     
-    public function all_used()
+    public function all_used(Tag $tags)
     {
         $directory = Directory::find(session('directory_id'));
         $tag_ids = session('tag_ids');
         if(isset($tag_ids)){
-            $tags = Tag::get();
             $tags = $tags->only($tag_ids);
+        }else{
+            $tags = null;
         }
         return view('hayaoshi.hayaoshi_all_used')->with(['directory' => $directory, 'tags' => $tags]);
     }
