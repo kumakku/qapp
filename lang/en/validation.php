@@ -199,6 +199,18 @@ return [
         'directory_name' => [
             'required' => ':attributeは入力必須です'
         ],
+        'user.interval' => [
+            'required' => ':attributeは入力必須です',
+            'integer' => ':attributeは自然数である必要があります',
+            'max' => ':attributeの値は:max以下である必要があります',
+            'min' => ':attributeの値は:min以上である必要があります',
+        ],
+        'user.count_down_time' => [
+            'required' => ':attributeは入力必須です',
+            'integer' => ':attributeは自然数である必要があります',
+            'max' => ':attributeの値は:max以下である必要があります',
+            'min' => ':attributeの値は:min以上である必要があります',
+        ]
     ],
 
     /*
@@ -222,7 +234,9 @@ return [
         'column_num_array.*' => ':position行目のカラム数',
         'file_array.*.body' => ':position行目の1列目',
         'file_array.*.answer' => ':position行目の2列目',
-        'directory_name' => 'ディレクトリ名'
+        'directory_name' => 'ディレクトリ名',
+        'user.interval' => '問題文の表示速度',
+        'user.count_down_time' => 'カウントダウンの秒数',
         ],
 
 ];

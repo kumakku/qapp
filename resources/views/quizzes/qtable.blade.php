@@ -12,7 +12,7 @@
                 <tr class="head_record">
                     <th>問題</th>
                     <th>答え</th>
-                    <th>注釈</th>
+                    <th>ディレクトリ</th>
                     <th>タグ</th>
                     <th></th>
                     <th></th>
@@ -21,7 +21,7 @@
                 <tr class="record">
                     <td><a href="/quizzes/{{ $quiz->id }}">{{ $quiz->body }}</a></td>
                     <td>{{ $quiz->answer }}</td>
-                    <td>{{ $quiz->annotation }}</td>
+                    <td><a href="/directories/{{ $quiz->directory()->first()->id }}">{{ $quiz->directory()->first()->name }}</a></td>
                     <td>
                         @php
                             $tags = $quiz->tags()->get();

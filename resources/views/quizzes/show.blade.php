@@ -30,6 +30,13 @@
                     <p>{{ $tag->name }}</p>
                 @endforeach
                 
+                <h2>出題状況</h2>
+                @if ($quiz->question_flag)
+                    <p>出題済</p>
+                @else
+                    <p>未出題</p>
+                @endif
+                
                 <div class="flex justify-center">
                     <button type="button" class="btn" onclick="location.href='/quizzes/{{ $quiz->id }}/edit'">編集</button>
                     <form action="/quizzes/{{ $quiz->id }}" method="POST" id="form_{{ $quiz->id }}">

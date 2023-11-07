@@ -18,7 +18,7 @@ class HayaoshiController extends Controller
     {
         $interval = Auth::user()->interval;
         $count_down_time = Auth::user()->count_down_time;
-        if ($quiz->user_id == auth()->id() && $quiz->question_flag == 0){
+        if ($quiz->user_id == Auth::user()->id && $quiz->question_flag == 0){
             return view('hayaoshi.hayaoshi')->with([
                 'quiz' => $quiz, 
                 'images' => $quiz->images()->get(),
@@ -34,10 +34,10 @@ class HayaoshiController extends Controller
         }
     }
     
-    public function start_button_pressed(Request $request)
+    public function start_button_pressed(Quiz $quiz, Request $request)
     {
         //hayaoshi_portal画面でスタートボタンを押した時のみセッションを書き換える
-        $request->session()->forget(['directory_id', 'directory_ids', 'tag_ids']);
+        $request->session()->forget(['directory_id', 'tag_ids', 'selected_quizzes']);
         $directory_id = $request->input('directory');
         if (isset($directory_id)){
             $directory_ids = Directory::find($directory_id)->descendantsWithSelf()->get()->pluck('id')->toArray(); //選択したディレクトリとその全ての子孫ディレクトリ
@@ -45,16 +45,28 @@ class HayaoshiController extends Controller
             $directory_ids = Directory::where('user_id', Auth::user()->id)->pluck('id')->toArray(); //ディレクトリを選択しなかった場合はそのユーザーのすべてのディレクトリを選択
         }
         $tag_ids = $request->input('tags');
-        $request->session()->put(['directory_id' => $directory_id, 'directory_ids' => $directory_ids, 'tag_ids' => $tag_ids]);
-        $quiz = new Quiz();
-        return $this->hayaoshi_select($quiz, $directory_ids, $tag_ids);
+        $user_id = Auth::user()->id;
+        $quizzes = $quiz
+            ->where([['user_id', $user_id], ['question_flag', 0]])
+            ->whereIn('directory_id', $directory_ids)
+            ->get();
+        if(isset($tag_ids)){
+            foreach($tag_ids as $tag_id){
+                $quizzes = $quizzes->intersect(Tag::find($tag_id)->quizzes()->get());
+            }
+        }
+        $request->session()->put(['directory_id' => $directory_id, 'tag_ids' => $tag_ids, 'selected_quizzes' => $quizzes]);
+        return $this->hayaoshi_select();
     }
     
-    public function hayaoshi_select(Quiz $quiz, $directory_ids, $tag_ids)
+    public function hayaoshi_select()
     {
-        $q = $quiz->getWeightedQuiz($directory_ids, $tag_ids);
-        if (isset($q)){
-            return redirect('/hayaoshi/'.$q->id);
+        $quiz = new Quiz();
+        $selected_quizzes = session('selected_quizzes');
+        [$selected_q, $selected_qindex] = $quiz->getWeightedQuiz($selected_quizzes);
+        session(['selected_qindex' => $selected_qindex]);
+        if (isset($selected_q)){
+            return redirect('/hayaoshi/'.$selected_q->id);
         }else{
             return redirect('/hayaoshi/all_used');
         }
@@ -86,11 +98,7 @@ class HayaoshiController extends Controller
         $history->quiz_id = $quiz->id;
         $history->is_correct = 0;
         $history->save();
-        
-        $quiz = new Quiz();
-        $directory_ids = session('directory_ids');
-        $tag_ids = session('tag_ids');
-        return $this->hayaoshi_select($quiz, $directory_ids, $tag_ids);
+        return $this->hayaoshi_select();
     }
     
     public function correct(Quiz $quiz, History $history)
@@ -99,22 +107,19 @@ class HayaoshiController extends Controller
         $history->is_correct = 1;
         $history->save();
         
+        $selected_quizzes = session('selected_quizzes');
+        $selected_quizzes->pull(session('selected_qindex'));
+        session(['selected_quizzes' => $selected_quizzes]);
         $quiz->question_flag = 1;
         $quiz->save();
-        
-        $quiz = new Quiz();
-        $directory_ids = session('directory_ids');
-        $tag_ids = session('tag_ids');
-        return $this->hayaoshi_select($quiz, $directory_ids, $tag_ids);
+        return $this->hayaoshi_select();
     }
     
-    //すべてのクイズのquestion_flagを1から0にリセットする
-    public function reset_flag(){
-        $user_id = auth()->id();
-        DB::table('quizzes')->where([
-                ['user_id', $user_id],
-                ['question_flag', 1],
-            ])->update(['question_flag' => 0]);
-        return redirect('/hayaoshi');
+    public function reset_flag(Request $request, Quiz $quiz){
+        $resflag_id = $request->input('resflag_id');
+        $q = $quiz->find($resflag_id);
+        $q->question_flag = 0;
+        $q->save();
+        return redirect('/quizzes/'.$resflag_id);
     }
 }
