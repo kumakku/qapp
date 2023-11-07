@@ -71,8 +71,32 @@ class Quiz extends Model
         }
     }
     
-    //正解率によって重み付けした確率でクイズを取得する
-    public function getWeightedQuiz($directory_ids, $tag_ids)
+    //過去の正解率によって重み付けした確率でクイズを取得する
+    public function getWeightedQuiz($quizzes)
+    {
+        $qweights = []; //クイズの重みを格納する配列。qweights[qindex]=quizzes[qindex]の重み。
+        foreach($quizzes as $qindex => $quiz){
+            $accuracy = $quiz->accuracy();
+            if($accuracy != 1){
+                $qweights[$qindex] = 1.0 - $accuracy;
+            }else{
+                //正解率100%のクイズの重みが0にならないようにする
+                $accuracy_num = Auth::user()->accuracy_num;
+                $qweights[$qindex] = 1.0/(2.0*$accuracy_num); //1度だけ間違えたクイズの半分の重みをつける
+            }
+        }
+        $sum = array_sum($qweights);
+        $rand = $sum*mt_rand()/mt_getrandmax();
+        $accumulated_weight = 0.0;
+        foreach($qweights as $qindex => $weight){
+            $accumulated_weight += $weight;
+            if($accumulated_weight >= $rand){
+                return [$quizzes->get($qindex), $qindex];
+            }
+        }
+    }
+    
+    public function getWeightedQuiz_old($directory_ids, $tag_ids)
     {
         $user_id = Auth::user()->id;
         $quizzes = $this

@@ -74,6 +74,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/profile/preferences', [ProfileController::class, 'preferences'])->name('profile.preferences');
+    Route::post('profile/preferences', [ProfileController::class, 'update_preferences'])->name('profile.update_preferences');
+    Route::put('/profile/reset_all_flags', [ProfileController::class, 'reset_all_flags'])->name('profile.reset_all_flags');
 });
 
 require __DIR__.'/auth.php';

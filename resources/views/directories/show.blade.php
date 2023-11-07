@@ -46,7 +46,7 @@
             <input type="submit" class="btn" value="検索">
         </form>
         <!--クイズ一覧をテーブル表示-->
-        @include('quizzes.qtable', ['quizzezs' => $quizzes])
+        @include('quizzes.qtable', ['quizzes' => $quizzes])
             
         
         <script>

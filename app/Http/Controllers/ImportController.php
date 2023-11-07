@@ -36,6 +36,7 @@ class ImportController extends Controller
             $item['updated_at'] = new Datetime();
         }
         unset($item);
+        //バルクインサート
         foreach(collect($file_array)->chunk(500) as $chunk){
             $quiz->insert($chunk->toArray());
         }
